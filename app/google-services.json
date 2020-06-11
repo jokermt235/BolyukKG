@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1004481019713",
+    "firebase_url": "https://zapshopkg.firebaseio.com",
+    "project_id": "zapshopkg",
+    "storage_bucket": "zapshopkg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1004481019713:android:2221eaa32e1a445bd6abc0",
+        "android_client_info": {
+          "package_name": "com.example.bolyukkg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1004481019713-eaamhd2f3hp8bm1mfpe6dbkks7j8g0oo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKzuw20FJQGeJIoj6_vAuslz3xHbjN-kY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1004481019713-eaamhd2f3hp8bm1mfpe6dbkks7j8g0oo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

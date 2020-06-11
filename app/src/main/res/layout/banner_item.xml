@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ml_banner_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:srcCompat="@mipmap/engine" />
+
+    <TextView
+        android:id="@+id/ml_banner_text"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignLeft="@id/ml_banner_image"
+        android:layout_alignRight="@id/ml_banner_image"
+        android:layout_alignBottom="@id/ml_banner_image"
+        android:background="@mipmap/bg_shadow"
+        android:backgroundTintMode="src_in"
+        android:gravity="bottom"
+        android:paddingStart="10dp"
+        android:paddingBottom="5dp"
+        android:text="@string/ml_default_banner_text"
+        android:textColor="@color/grid_item_bg"
+        android:textSize="18sp" />
+</RelativeLayout>

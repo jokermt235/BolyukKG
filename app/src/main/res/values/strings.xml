@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">BolyukKG</string>
+    <string name="api_server">http://test.exesoft.org:8008/</string>
+    <string name="access_token">a4d5c33e12795c21a3e40a53d94ddfd0</string>
+    <string name="image_sub_url">static</string>
+    <string name="token_as_param">"?access_token=a4d5c33e12795c21a3e40a53d94ddfd0"</string>
+    <string name="main_toolbar_title">ZapShop</string>
+    <string name="brand_title">Брэнды</string>
+    <string name="mianTab1">Легковые</string>
+    <string name="mianTab2">Грузовые</string>
+    <string name="mianTab3">Разбор</string>
+    <string name="item_name">ПАТРУБОК ДРОССЕЛЬНОЙ ЗАСЛОНКИ, ELECTRONIC CONTROL (GMF3D)</string>
+    <string name="article">Артикул:</string>
+    <string name="item_currency">CОМ</string>
+    <string name="cart">Корзина</string>
+    <string name="owner_phone">0555 678 867</string>
+    <string name="owner_whatsapp">+996 555 789 987</string>
+    <string name="contacts">Контакты</string>
+    <string name="home">Главная</string>
+    <string name="ml_default_banner_text">Привет продается все за дешево!</string>
+</resources>
