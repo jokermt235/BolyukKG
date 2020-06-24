@@ -5,11 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.widget.SimpleAdapter;
-
 import com.example.bolyukkg.Callback.OnFilterResult;
 import com.example.bolyukkg.Module.SimpleLoader;
-
 import java.util.ArrayList;
 import java.util.Map;
 

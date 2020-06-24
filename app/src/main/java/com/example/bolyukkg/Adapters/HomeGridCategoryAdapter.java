@@ -2,6 +2,8 @@ package com.example.bolyukkg.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.bolyukkg.Callback.OnImageDownloadResult;
+import com.example.bolyukkg.Module.SimpleImageLoader;
+import com.example.bolyukkg.Module.SimpleLoader;
 import com.example.bolyukkg.R;
 
 import java.util.ArrayList;
@@ -16,7 +21,9 @@ import java.util.Map;
 
 public class HomeGridCategoryAdapter extends BaseAdapter {
 
+    private static final String TAG = "";
     private Context mContext;
+    private ViewHolder vh;
 
     private ArrayList<Map<String, Object>> collections;
 
@@ -45,7 +52,7 @@ public class HomeGridCategoryAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        ViewHolder viewHolder;
+       final ViewHolder viewHolder;
 
         if (convertView == null) {
             view = inflater.inflate(R.layout.home_category_grid_item, viewGroup ,false);
@@ -56,8 +63,17 @@ public class HomeGridCategoryAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        //viewHolder.imageView.setImageBitmap(collections.get(i).getImage());
-        //viewHolder.textView.setText(collections.get(i).getTitle());
+        SimpleImageLoader.loadImages("category",(String)collections.get(i).get("title") , new OnImageDownloadResult(){
+            @Override
+            public void onResult(ArrayList<Bitmap> items) {
+                super.onResult(items);
+                Log.d(TAG, items.toString());
+                if(!items.isEmpty()) {
+                    viewHolder.imageView.setImageBitmap(items.get(0));
+                }
+            }
+        });
+        viewHolder.textView.setText((String)collections.get(i).get("title"));
         //viewHolder.textViewId.setText(String.valueOf(collections.get(i).getId()));
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +87,7 @@ public class HomeGridCategoryAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
-        final ImageView imageView;
+        public final ImageView imageView;
         final TextView textView;
         final TextView textViewId;
         ViewHolder(View view){
