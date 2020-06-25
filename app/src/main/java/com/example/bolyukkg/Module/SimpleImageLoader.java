@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -17,12 +18,13 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 
 public class SimpleImageLoader {
-    private static String TAG = "SimpleImageSlider";
+    private static String TAG = "SimpleImageLoader";
     public static  void loadImages(String collection , final String uid , final OnImageDownloadResult result) {
         if (uid!= null) {
             StorageReference storageRef = FirebaseStorage.getInstance().getReference();
             StorageReference islandRef = storageRef.child(collection+"/" + uid);
             final ArrayList<Bitmap> images = new ArrayList<>();
+            Log.d(TAG, collection+"/" + uid);
             islandRef.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
                 @Override
                 public void onSuccess(ListResult listResult) {
@@ -38,6 +40,7 @@ public class SimpleImageLoader {
                                         // Data for "images/island.jpg" is returns, use this as needed
                                         Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                                         images.add(bmp);
+                                        result.onResult(images);
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
@@ -49,7 +52,6 @@ public class SimpleImageLoader {
                             }
                         }
                     }
-                    result.onResult(images);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

@@ -1,12 +1,15 @@
 package com.example.bolyukkg.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.bolyukkg.Callback.OnImageDownloadResult;
+import com.example.bolyukkg.Module.SimpleImageLoader;
 import com.example.bolyukkg.R;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
@@ -29,10 +32,17 @@ public class BannerViewAdapter extends SliderViewAdapter<BannerViewAdapter.Slide
     }
 
     @Override
-    public void onBindViewHolder(SliderAdapterVH viewHolder, int position) {
+    public void onBindViewHolder(final SliderAdapterVH viewHolder, int position) {
         if(items.size() > 0){
-            //viewHolder.imageViewBackground.setImageBitmap();
-            //viewHolder.textViewDescription.setText();
+            SimpleImageLoader.loadImages("banners", (String) items.get(position).get("uid"), new OnImageDownloadResult(){
+                @Override
+                public void onResult(ArrayList<Bitmap> items) {
+                    super.onResult(items);
+                    viewHolder.imageViewBackground.setImageBitmap(items.get(0));
+                }
+            });
+
+            viewHolder.textViewDescription.setText((String)items.get(position).get("title"));
         }
     }
 

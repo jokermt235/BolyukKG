@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class HomeGridCategoryAdapter extends BaseAdapter {
 
-    private static final String TAG = "";
+    private static final String TAG = "HomeGridCategoryAdapter";
     private Context mContext;
     private ViewHolder vh;
 
@@ -63,7 +63,7 @@ public class HomeGridCategoryAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        SimpleImageLoader.loadImages("category",(String)collections.get(i).get("title") , new OnImageDownloadResult(){
+        SimpleImageLoader.loadImages("category",(String)collections.get(i).get("uid") , new OnImageDownloadResult(){
             @Override
             public void onResult(ArrayList<Bitmap> items) {
                 super.onResult(items);

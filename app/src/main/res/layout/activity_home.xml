@@ -22,13 +22,6 @@
             android:layout_height="wrap_content"
             app:titleTextColor="@android:color/white" />
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/banner_pager"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:visibility="gone">
-        </androidx.viewpager.widget.ViewPager>
-
         <com.smarteist.autoimageslider.SliderView
             android:id="@+id/imageSlider"
             android:layout_width="match_parent"
@@ -45,7 +38,7 @@
             app:sliderIndicatorRadius="2dp"
             app:sliderIndicatorSelectedColor="#5A5A5A"
             app:sliderIndicatorUnselectedColor="#FFF"
-            app:sliderScrollTimeInSec="1"
+            app:sliderScrollTimeInSec="10"
             app:sliderStartAutoCycle="true" />
 
 
