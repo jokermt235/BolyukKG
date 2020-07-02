@@ -34,7 +34,7 @@ public class BannerViewAdapter extends SliderViewAdapter<BannerViewAdapter.Slide
     @Override
     public void onBindViewHolder(final SliderAdapterVH viewHolder, int position) {
         if(items.size() > 0){
-            SimpleImageLoader.loadImages("banners", (String) items.get(position).get("uid"), new OnImageDownloadResult(){
+            SimpleImageLoader.loadImages("banner", (String) items.get(position).get("uid"), new OnImageDownloadResult(){
                 @Override
                 public void onResult(ArrayList<Bitmap> items) {
                     super.onResult(items);
