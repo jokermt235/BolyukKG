@@ -14,21 +14,20 @@ import android.widget.TextView;
 import com.example.bolyukkg.BrandActivity;
 import com.example.bolyukkg.Callback.OnImageDownloadResult;
 import com.example.bolyukkg.Module.SimpleImageLoader;
-import com.example.bolyukkg.Module.SimpleLoader;
 import com.example.bolyukkg.R;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-public class HomeGridCategoryAdapter extends BaseAdapter {
+public class BrandGridAdapter extends BaseAdapter {
 
-    private static final String TAG = "HomeGridCategoryAdapter";
+    private static final String TAG = "BrandGridAdapter";
     private Context mContext;
     private ViewHolder vh;
 
     private ArrayList<Map<String, Object>> collections;
 
-    public  HomeGridCategoryAdapter(Context c, ArrayList<Map<String, Object>> collections){
+    public  BrandGridAdapter(Context c, ArrayList<Map<String, Object>> collections){
         this.mContext = c;
         this.collections = collections;
     }
@@ -53,30 +52,17 @@ public class HomeGridCategoryAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-       final ViewHolder viewHolder;
+        final ViewHolder viewHolder;
 
         if (convertView == null) {
-            view = inflater.inflate(R.layout.home_category_grid_item, viewGroup ,false);
+            view = inflater.inflate(R.layout.brand_grid_item, viewGroup ,false);
             viewHolder = new ViewHolder(view);
             view.setTag(viewHolder);
         }else{
             view = (View)convertView;
             viewHolder = (ViewHolder) view.getTag();
         }
-
-        SimpleImageLoader.loadImages("category",(String)collections.get(i).get("uid") , new OnImageDownloadResult(){
-            @Override
-            public void onResult(ArrayList<Bitmap> items) {
-                super.onResult(items);
-                Log.d(TAG, items.toString());
-                if(!items.isEmpty()) {
-                    viewHolder.imageView.setImageBitmap(items.get(0));
-                }
-            }
-        });
-
-        viewHolder.textView.setText((String)collections.get(i).get("title"));
-
+        viewHolder.name.setText((String)collections.get(i).get("name"));
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,11 +75,11 @@ public class HomeGridCategoryAdapter extends BaseAdapter {
 
     private class ViewHolder {
         public final ImageView imageView;
-        final TextView textView;
+        final TextView name;
         final TextView textViewId;
         ViewHolder(View view){
-            imageView = view.findViewById(R.id.main_cat_item_image);
-            textView = view.findViewById(R.id.main_cat_item_title);
+            imageView = view.findViewById(R.id.brand_grid_item_image);
+            name = view.findViewById(R.id.brand_grid_item_title);
             textViewId = view.findViewById(R.id.collection_id);
         }
     }

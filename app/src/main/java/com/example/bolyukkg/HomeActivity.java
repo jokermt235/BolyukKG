@@ -42,14 +42,14 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onResult(ArrayList<Map<String, Object>> arrayList) {
                 super.onResult(arrayList);
-                mainCatGrid.setAdapter(new HomeGridCategoryAdapter(getApplicationContext(),arrayList));
+                mainCatGrid.setAdapter(new HomeGridCategoryAdapter(HomeActivity.this,arrayList));
             }
         });
         SimpleLoader.filter("banner", new OnFilterResult(){
             @Override
             public void onResult(ArrayList<Map<String, Object>> arrayList) {
                 super.onResult(arrayList);
-                bannerSlider.setSliderAdapter(new BannerViewAdapter(getApplicationContext(), arrayList));
+                bannerSlider.setSliderAdapter(new BannerViewAdapter(HomeActivity.this, arrayList));
             }
         });
 
