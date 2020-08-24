@@ -62,12 +62,13 @@ public class BrandGridAdapter extends BaseAdapter {
             view = (View)convertView;
             viewHolder = (ViewHolder) view.getTag();
         }
+
         viewHolder.name.setText((String)collections.get(i).get("name"));
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, BrandActivity.class);
-                mContext.startActivity(intent);
+                //mContext.startActivity(intent);
             }
         });
         return view;
