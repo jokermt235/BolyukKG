@@ -5,15 +5,18 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.example.bolyukkg.BrandActivity;
 import com.example.bolyukkg.Callback.OnImageDownloadResult;
 import com.example.bolyukkg.Module.SimpleImageLoader;
+import com.example.bolyukkg.Module.SimpleLoader;
 import com.example.bolyukkg.R;
 
 import java.util.ArrayList;
@@ -67,8 +70,7 @@ public class BrandGridAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, BrandActivity.class);
-                //mContext.startActivity(intent);
+                //Intent intent = new Intent(mContext, BrandActivity.class);
             }
         });
         return view;
@@ -78,10 +80,12 @@ public class BrandGridAdapter extends BaseAdapter {
         public final ImageView imageView;
         final TextView name;
         final TextView textViewId;
+        final PopupMenu modelMenu;
         ViewHolder(View view){
             imageView = view.findViewById(R.id.brand_grid_item_image);
             name = view.findViewById(R.id.brand_grid_item_title);
             textViewId = view.findViewById(R.id.collection_id);
+            modelMenu = null;
         }
     }
 }
