@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +15,14 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.example.bolyukkg.BrandActivity;
+import com.example.bolyukkg.Callback.BrandOnClick;
 import com.example.bolyukkg.Callback.OnImageDownloadResult;
 import com.example.bolyukkg.Module.SimpleImageLoader;
 import com.example.bolyukkg.Module.SimpleLoader;
 import com.example.bolyukkg.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class BrandGridAdapter extends BaseAdapter {
@@ -27,6 +30,7 @@ public class BrandGridAdapter extends BaseAdapter {
     private static final String TAG = "BrandGridAdapter";
     private Context mContext;
     private ViewHolder vh;
+    PopupMenu popupMenu;
 
     private ArrayList<Map<String, Object>> collections;
 
@@ -70,7 +74,18 @@ public class BrandGridAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(mContext, BrandActivity.class);
+                Log.d(TAG, view.toString());
+                popupMenu = new PopupMenu(mContext,viewHolder.imageView);
+                Menu menu = popupMenu.getMenu();
+                Map<String, Object> models = (HashMap) collections.get(i).get("models");
+                if(models != null) {
+                    //for (int i = 0; i < models.size(); i++)
+                    {
+                        menu.add((String) models.get("name"));
+                    }
+                }
+                popupMenu.getMenuInflater().inflate(R.menu.menu_model, menu);
+                popupMenu.show();
             }
         });
         return view;
