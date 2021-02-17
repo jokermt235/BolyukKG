@@ -9,7 +9,7 @@
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always|collapseActionView" />
     <item
-        android:id="@+id/storage_toolbar_item_sync"
+        android:id="@+id/home_toolbar_item_cart"
         android:icon="@drawable/ic_baseline_shopping_cart_24"
         android:orderInCategory="100"
         android:title=""

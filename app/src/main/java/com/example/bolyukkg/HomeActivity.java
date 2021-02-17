@@ -1,10 +1,13 @@
 package com.example.bolyukkg;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.GridView;
 
 import com.example.bolyukkg.Adapters.BannerViewAdapter;
@@ -59,16 +62,11 @@ public class HomeActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.home_toolbar_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.storage_toolbar_menu, menu);
-        menu.getItem(0).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                Log.d(TAG, "Syncronized clicked");
-                return false;
-            }
-        });
-        return true;
-    }*/
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.home_toolbar_item_cart : startActivity(new Intent(HomeActivity.this, CartActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
