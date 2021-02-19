@@ -12,13 +12,14 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.example.bolyukkg.Adapters.DetailListAdapter;
+import com.example.bolyukkg.Callback.ITranslateData;
 import com.example.bolyukkg.Callback.OnFilterResult;
 import com.example.bolyukkg.Module.SimpleLoader;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements ITranslateData {
 
     private final String TAG = "DetailActivity";
     private ListView detailList;
@@ -54,13 +55,20 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void load(){
-        SimpleLoader.filter("detail", new OnFilterResult(){
+        /*SimpleLoader.filter("detail", new OnFilterResult(){
             @Override
             public void onResult(ArrayList<Map<String, Object>> arrayList) {
                 super.onResult(arrayList);
                 Log.d(TAG, arrayList.toString());
-                detailList.setAdapter(new DetailListAdapter(DetailActivity.this, arrayList));
+                detailList.setAdapter(new DetailListAdapter(DetailActivity.this, arrayList, this));
             }
-        });
+        });*/
+    }
+
+    @Override
+    public void onSaveItem(boolean status) {
+        if(status){
+
+        }
     }
 }

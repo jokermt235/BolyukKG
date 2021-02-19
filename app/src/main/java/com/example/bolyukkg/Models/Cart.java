@@ -2,14 +2,34 @@ package com.example.bolyukkg.Models;
 
 import android.graphics.Bitmap;
 
+import java.util.UUID;
+
 public class Cart {
-    private String id;
+    private String id = UUID.randomUUID().toString();
+    private String detail;
     private String detailId;
+    private String article;
     private long amount;
     private long price;
     private String currency;
     private String unit;
     private Bitmap image;
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
+    public String getArticle() {
+        return article;
+    }
+
+    public void setArticle(String article) {
+        this.article = article;
+    }
 
     public void setAmount(long amount) {
         this.amount = amount;

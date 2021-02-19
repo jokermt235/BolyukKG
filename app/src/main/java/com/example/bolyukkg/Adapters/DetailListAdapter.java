@@ -12,7 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.bolyukkg.BrandActivity;
+import com.example.bolyukkg.Callback.ITranslateData;
 import com.example.bolyukkg.Callback.OnImageDownloadResult;
+import com.example.bolyukkg.Callback.OnSaveResult;
+import com.example.bolyukkg.Models.Cart;
+import com.example.bolyukkg.Models.CartRepo;
 import com.example.bolyukkg.Module.SimpleImageLoader;
 import com.example.bolyukkg.R;
 
@@ -24,12 +28,14 @@ public class DetailListAdapter extends BaseAdapter {
     private static final String TAG = "DetailListViewAdapter";
     private Context mContext;
     private ViewHolder vh;
+    private ITranslateData translateData;
 
     private ArrayList<Map<String, Object>> collections;
 
-    public  DetailListAdapter(Context c, ArrayList<Map<String, Object>> collections){
+    public  DetailListAdapter(Context c, ArrayList<Map<String, Object>> collections, ITranslateData translateData){
         this.mContext = c;
         this.collections = collections;
+        this.translateData = translateData;
     }
     @Override
     public int getCount() {
@@ -79,7 +85,18 @@ public class DetailListAdapter extends BaseAdapter {
         viewHolder.cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "CLICKED ON CART VALUE");
+                Cart  cart = new Cart();
+                cart.setDetail((String)collections.get(i).get("name"));
+                cart.setPrice((long)collections.get(i).get("price"));
+                cart.setArticle((String)collections.get(i).get("article"));
+                CartRepo cartRepo = new CartRepo(mContext);
+                cartRepo.save(cart, new OnSaveResult(){
+                    @Override
+                    public void onSave(boolean saved) {
+                        super.onSave(saved);
+                        translateData.onSaveItem(true);
+                    }
+                });
             }
         });
         String price = (long)collections.get(i).get("price") + " " + (String)collections.get(i).get("currency");

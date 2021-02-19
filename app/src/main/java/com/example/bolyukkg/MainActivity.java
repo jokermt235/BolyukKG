@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
+
+import com.example.bolyukkg.Callback.ITranslateData;
 import com.example.bolyukkg.Callback.OnFilterResult;
 import com.example.bolyukkg.Module.Auth;
 import com.example.bolyukkg.Module.SimpleLoader;
@@ -14,7 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ITranslateData {
     private String android_id;
     private FirebaseAuth mAuth;
     @Override
@@ -49,5 +51,10 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Auth.signInAnonymously(mAuth);
         }
+    }
+
+    @Override
+    public void onSendData() {
+
     }
 }
