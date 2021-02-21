@@ -2,7 +2,6 @@ package com.example.bolyukkg.Adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.media.TimedText;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.bolyukkg.Callback.ITranslateData;
 import com.example.bolyukkg.Callback.OnImageDownloadResult;
 import com.example.bolyukkg.Module.SimpleImageLoader;
 import com.example.bolyukkg.R;
@@ -22,12 +22,14 @@ public class CartListAdapter  extends BaseAdapter {
     private static final String TAG = "CartListAdapter";
     private Context mContext;
     private CartListAdapter.ViewHolder vh;
+    private ITranslateData translateData;
 
     private ArrayList<Map<String, Object>> collections;
 
-    public  CartListAdapter(Context c, ArrayList<Map<String, Object>> collections){
+    public  CartListAdapter(Context c, ArrayList<Map<String, Object>> collections, ITranslateData translateData){
         this.mContext = c;
         this.collections = collections;
+        this.translateData = translateData;
     }
     @Override
     public int getCount() {
@@ -50,18 +52,18 @@ public class CartListAdapter  extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        final CartListAdapter.ViewHolder viewHolder;
+        final ViewHolder viewHolder;
 
         if (convertView == null) {
-            view = inflater.inflate(R.layout.detail_list_item, viewGroup ,false);
-            viewHolder = new CartListAdapter.ViewHolder(view);
+            view = inflater.inflate(R.layout.cart_list_item, viewGroup ,false);
+            viewHolder = new ViewHolder(view);
             view.setTag(viewHolder);
         }else{
             view = (View)convertView;
-            viewHolder = (CartListAdapter.ViewHolder) view.getTag();
+            viewHolder = (ViewHolder) view.getTag();
         }
 
-        SimpleImageLoader.loadImages("detail",(String)collections.get(i).get("uid") , new OnImageDownloadResult(){
+        SimpleImageLoader.loadImages("detail",(String)collections.get(i).get("detailId") , new OnImageDownloadResult(){
             @Override
             public void onResult(ArrayList<Bitmap> items) {
                 super.onResult(items);

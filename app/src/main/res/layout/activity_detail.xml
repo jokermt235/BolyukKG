@@ -23,9 +23,60 @@
             android:theme="?attr/actionBarTheme"
             app:titleTextColor="@android:color/white" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/detailPathCat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="Ходовка"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"></TextView>
+
+            <ImageView
+                android:id="@+id/detailChevron1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_baseline_chevron_right_24" />
+
+            <TextView
+                android:id="@+id/detailPathBrand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:text="Audi"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"></TextView>
+
+            <ImageView
+                android:id="@+id/detailChevron2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_baseline_chevron_right_24" />
+
+            <TextView
+                android:id="@+id/detailPathModel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="Q7"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"></TextView>
+        </LinearLayout>
         <ListView
             android:id="@+id/detailList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" >
+        </ListView>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

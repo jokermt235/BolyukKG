@@ -1,7 +1,9 @@
 package com.example.bolyukkg.Callback;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public interface ITranslateData {
-    public void onSaveItem(boolean status);
+    void onSaveItem(boolean status);
+    void onFilerData(ArrayList<Map<String, Object>> data);
 }

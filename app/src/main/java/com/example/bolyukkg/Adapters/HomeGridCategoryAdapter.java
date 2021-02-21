@@ -50,7 +50,7 @@ public class HomeGridCategoryAdapter extends BaseAdapter {
     @Override
     public View getView(final int i, View convertView, ViewGroup viewGroup) {
         View view = null;
-        LayoutInflater inflater = (LayoutInflater) mContext
+        final LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
        final ViewHolder viewHolder;
@@ -64,7 +64,7 @@ public class HomeGridCategoryAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        SimpleImageLoader.loadImages("category",(String)collections.get(i).get("uid") , new OnImageDownloadResult(){
+        SimpleImageLoader.loadImages("category",(String)collections.get(i).get("id") , new OnImageDownloadResult(){
             @Override
             public void onResult(ArrayList<Bitmap> items) {
                 super.onResult(items);
@@ -81,6 +81,8 @@ public class HomeGridCategoryAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, BrandActivity.class);
+                intent.putExtra("titleCat", (String)collections.get(i).get("title"));
+                intent.putExtra("idCat", (String)collections.get(i).get("id"));
                 mContext.startActivity(intent);
             }
         });

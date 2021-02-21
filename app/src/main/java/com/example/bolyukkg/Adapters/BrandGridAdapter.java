@@ -80,7 +80,8 @@ public class BrandGridAdapter extends BaseAdapter {
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        mContext.startActivity(new Intent(mContext, DetailActivity.class));
+                        Intent intent = new Intent(mContext, DetailActivity.class);
+                        mContext.startActivity(intent);
                         return false;
                     }
                 });

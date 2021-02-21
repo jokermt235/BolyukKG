@@ -32,26 +32,24 @@ public class HomeActivity extends AppCompatActivity {
         bannerSlider = findViewById(R.id.imageSlider);
         toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
+        loadLocal();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        loadLocal();
     }
 
     private void loadLocal(){
         SimpleLoader.filter("category", new OnFilterResult(){
             @Override
             public void onResult(ArrayList<Map<String, Object>> arrayList) {
-                super.onResult(arrayList);
                 mainCatGrid.setAdapter(new HomeGridCategoryAdapter(HomeActivity.this,arrayList));
             }
         });
         SimpleLoader.filter("banner", new OnFilterResult(){
             @Override
             public void onResult(ArrayList<Map<String, Object>> arrayList) {
-                super.onResult(arrayList);
                 bannerSlider.setSliderAdapter(new BannerViewAdapter(HomeActivity.this, arrayList));
             }
         });

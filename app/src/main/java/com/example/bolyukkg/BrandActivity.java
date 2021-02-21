@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.example.bolyukkg.Adapters.BrandGridAdapter;
 import com.example.bolyukkg.Callback.OnFilterResult;
@@ -21,6 +22,7 @@ public class BrandActivity extends AppCompatActivity {
 
     private GridView brandGridView;
     private Toolbar toolbar;
+    private TextView brandCat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,13 @@ public class BrandActivity extends AppCompatActivity {
         brandGridView = findViewById(R.id.brandGridView);
         toolbar = findViewById(R.id.brandToolbar);
         setSupportActionBar(toolbar);
+        brandCat = findViewById(R.id.brandCat);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        brandCat.setText(getIntent().getStringExtra("titleCat"));
     }
 
     @Override
@@ -54,7 +63,6 @@ public class BrandActivity extends AppCompatActivity {
         SimpleLoader.filter("brand", new OnFilterResult(){
             @Override
             public void onResult(ArrayList<Map<String, Object>> arrayList) {
-                super.onResult(arrayList);
                 if(!arrayList.isEmpty()){
                     brandGridView.setAdapter(new BrandGridAdapter(BrandActivity.this, arrayList));
                 }
