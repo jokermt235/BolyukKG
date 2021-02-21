@@ -12,6 +12,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+
+import com.example.bolyukkg.Callback.IRetrieveData;
 import com.example.bolyukkg.DetailActivity;
 import com.example.bolyukkg.R;
 import java.util.ArrayList;
@@ -23,12 +25,14 @@ public class BrandGridAdapter extends BaseAdapter {
     private Context mContext;
     private ViewHolder vh;
     PopupMenu popupMenu;
+    private  IRetrieveData retrieveData;
 
     private ArrayList<Map<String, Object>> collections;
 
-    public  BrandGridAdapter(Context c, ArrayList<Map<String, Object>> collections){
+    public  BrandGridAdapter(Context c, ArrayList<Map<String, Object>> collections , IRetrieveData retrieveData){
         this.mContext = c;
         this.collections = collections;
+        this.retrieveData = retrieveData;
     }
     @Override
     public int getCount() {
@@ -48,7 +52,7 @@ public class BrandGridAdapter extends BaseAdapter {
     @Override
     public View getView(final int i, View convertView, ViewGroup viewGroup) {
         View view = null;
-        LayoutInflater inflater = (LayoutInflater) mContext
+        final LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         final ViewHolder viewHolder;
@@ -81,6 +85,9 @@ public class BrandGridAdapter extends BaseAdapter {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         Intent intent = new Intent(mContext, DetailActivity.class);
+                        intent.putExtra("titleCat", retrieveData.getCat());
+                        intent.putExtra("titleBrand", (String)collections.get(i).get("name"));
+                        intent.putExtra("titleModel", item.getTitle());
                         mContext.startActivity(intent);
                         return false;
                     }

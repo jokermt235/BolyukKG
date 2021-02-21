@@ -12,17 +12,19 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.example.bolyukkg.Adapters.BrandGridAdapter;
+import com.example.bolyukkg.Callback.IRetrieveData;
 import com.example.bolyukkg.Callback.OnFilterResult;
 import com.example.bolyukkg.Module.SimpleLoader;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-public class BrandActivity extends AppCompatActivity {
+public class BrandActivity extends AppCompatActivity implements IRetrieveData {
 
     private GridView brandGridView;
     private Toolbar toolbar;
     private TextView brandCat;
+    private String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class BrandActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.brandToolbar);
         setSupportActionBar(toolbar);
         brandCat = findViewById(R.id.brandCat);
+        category = getIntent().getStringExtra("titleCat");
     }
 
     @Override
@@ -64,9 +67,19 @@ public class BrandActivity extends AppCompatActivity {
             @Override
             public void onResult(ArrayList<Map<String, Object>> arrayList) {
                 if(!arrayList.isEmpty()){
-                    brandGridView.setAdapter(new BrandGridAdapter(BrandActivity.this, arrayList));
+                    brandGridView.setAdapter(new BrandGridAdapter(BrandActivity.this, arrayList, BrandActivity.this));
                 }
             }
         });
+    }
+
+    @Override
+    public String getCat() {
+        return category;
+    }
+
+    @Override
+    public String getBrand() {
+        return "";
     }
 }

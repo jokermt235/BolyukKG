@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.bolyukkg.Adapters.DetailListAdapter;
 import com.example.bolyukkg.Callback.ITranslateData;
@@ -24,6 +25,9 @@ public class DetailActivity extends AppCompatActivity implements ITranslateData 
     private ListView detailList;
     private Toolbar toolbar;
     private DetailRepo mDetail;
+    private TextView cat;
+    private TextView brandTitle;
+    private TextView modelTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,9 @@ public class DetailActivity extends AppCompatActivity implements ITranslateData 
         toolbar = findViewById(R.id.detailToolbar);
         setSupportActionBar(toolbar);
         mDetail = new DetailRepo(DetailActivity.this, this);
+        cat = findViewById(R.id.detailPathCat);
+        brandTitle = findViewById(R.id.detailPathBrand);
+        modelTitle = findViewById(R.id.detailPathModel);
     }
 
     @Override
@@ -58,6 +65,9 @@ public class DetailActivity extends AppCompatActivity implements ITranslateData 
     protected void onStart() {
         super.onStart();
         mDetail.filter();
+        cat.setText(getIntent().getStringExtra("titleCat"));
+        brandTitle.setText(getIntent().getStringExtra("titleBrand"));
+        modelTitle.setText(getIntent().getStringExtra("titleModel"));
     }
 
 
