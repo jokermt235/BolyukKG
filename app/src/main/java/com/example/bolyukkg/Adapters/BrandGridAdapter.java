@@ -2,6 +2,7 @@ package com.example.bolyukkg.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,7 +15,9 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.example.bolyukkg.Callback.IRetrieveData;
+import com.example.bolyukkg.Callback.OnImageDownloadResult;
 import com.example.bolyukkg.DetailActivity;
+import com.example.bolyukkg.Module.SimpleImageLoader;
 import com.example.bolyukkg.R;
 import java.util.ArrayList;
 import java.util.Map;
@@ -65,6 +68,16 @@ public class BrandGridAdapter extends BaseAdapter {
             view = (View)convertView;
             viewHolder = (ViewHolder) view.getTag();
         }
+        SimpleImageLoader.loadImages("brand",(String)collections.get(i).get("id") , new OnImageDownloadResult(){
+            @Override
+            public void onResult(ArrayList<Bitmap> items) {
+                super.onResult(items);
+                Log.d(TAG, items.toString());
+                if(!items.isEmpty()) {
+                    viewHolder.imageView.setImageBitmap(items.get(0));
+                }
+            }
+        });
 
         viewHolder.name.setText((String)collections.get(i).get("name"));
         view.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +99,9 @@ public class BrandGridAdapter extends BaseAdapter {
                     public boolean onMenuItemClick(MenuItem item) {
                         Intent intent = new Intent(mContext, DetailActivity.class);
                         intent.putExtra("titleCat", retrieveData.getCat());
+                        intent.putExtra("idCat", retrieveData.getCatId());
                         intent.putExtra("titleBrand", (String)collections.get(i).get("name"));
+                        intent.putExtra("idBrand",  (String)collections.get(i).get("id"));
                         intent.putExtra("titleModel", item.getTitle());
                         mContext.startActivity(intent);
                         return false;
@@ -99,7 +114,7 @@ public class BrandGridAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
-        public final ImageView imageView;
+        final ImageView imageView;
         final TextView name;
         final TextView textViewId;
         final PopupMenu modelMenu;

@@ -25,6 +25,7 @@ public class BrandActivity extends AppCompatActivity implements IRetrieveData {
     private Toolbar toolbar;
     private TextView brandCat;
     private String category;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,18 +36,20 @@ public class BrandActivity extends AppCompatActivity implements IRetrieveData {
         setSupportActionBar(toolbar);
         brandCat = findViewById(R.id.brandCat);
         category = getIntent().getStringExtra("titleCat");
+        id       = getIntent().getStringExtra("idCat");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         brandCat.setText(getIntent().getStringExtra("titleCat"));
+        loadLocal();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        loadLocal();
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,5 +84,10 @@ public class BrandActivity extends AppCompatActivity implements IRetrieveData {
     @Override
     public String getBrand() {
         return "";
+    }
+
+    @Override
+    public String getCatId() {
+        return id;
     }
 }
