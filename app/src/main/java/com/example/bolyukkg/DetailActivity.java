@@ -3,13 +3,13 @@ package com.example.bolyukkg;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.bolyukkg.Adapters.DetailListAdapter;
@@ -44,11 +44,29 @@ public class DetailActivity extends AppCompatActivity implements ITranslateData 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.home_toolbar_menu, menu);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.home_toolbar_item_search).getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(newText.isEmpty()){
+                    newText = null;
+                }
+                mDetail.filter(getIntent().getStringExtra("idCat"), getIntent().getStringExtra("idBrand"),newText);
+                return false;
+            }
+        });
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         switch (item.getItemId()){
             case R.id.home_toolbar_item_cart : startActivity(new Intent(DetailActivity.this, CartActivity.class));
         }
@@ -64,7 +82,7 @@ public class DetailActivity extends AppCompatActivity implements ITranslateData 
     @Override
     protected void onStart() {
         super.onStart();
-        mDetail.filter();
+        mDetail.filter(getIntent().getStringExtra("idCat"), getIntent().getStringExtra("idBrand"),null);
         cat.setText(getIntent().getStringExtra("titleCat"));
         brandTitle.setText(getIntent().getStringExtra("titleBrand"));
         modelTitle.setText(getIntent().getStringExtra("titleModel"));
