@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bolyukkg.Adapters.DetailListAdapter;
 import com.example.bolyukkg.Callback.ITranslateData;
@@ -92,7 +93,7 @@ public class DetailActivity extends AppCompatActivity implements ITranslateData 
     @Override
     public void onSaveItem(boolean status) {
         if(status){
-
+            Toast.makeText(DetailActivity.this, "Успешно добавлено в корзину" , Toast.LENGTH_LONG).show();
         }
     }
 

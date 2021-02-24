@@ -32,7 +32,7 @@ public class CartActivity extends AppCompatActivity implements ITranslateData {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home_toolbar_menu, menu);
+        getMenuInflater().inflate(R.menu.cart_toolbar_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

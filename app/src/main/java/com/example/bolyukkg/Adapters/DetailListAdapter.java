@@ -91,6 +91,8 @@ public class DetailListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 CartRepo cartRepo = new CartRepo(mContext, translateData);
+                Map data = collections.get(i);
+                data.put("amount", Long.parseLong(viewHolder.detailAmountUser.getText().toString()));
                 cartRepo.save(collections.get(i));
             }
         });
@@ -98,6 +100,28 @@ public class DetailListAdapter extends BaseAdapter {
         viewHolder.detailPrice.setText(price);
         viewHolder.detailAmount.setText(Long.toString((long)collections.get(i).get("amount")));
         viewHolder.detailUnit.setText((String)collections.get(i).get("unit"));
+        viewHolder.detailInc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String amount = viewHolder.detailAmountUser.getText().toString();
+                long count = Long.parseLong(amount);
+                if(count < (long)collections.get(i).get("amount") ){
+                    count ++;
+                }
+                viewHolder.detailAmountUser.setText(String.valueOf(count));
+            }
+        });
+        viewHolder.detailDec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String amount = viewHolder.detailAmountUser.getText().toString();
+                long count = Long.parseLong(amount);
+                if(count >  1 ){
+                    count --;
+                }
+                viewHolder.detailAmountUser.setText(String.valueOf(count));
+            }
+        });
         view.setEnabled(false);
         view.setClickable(false);
         return view;
@@ -112,6 +136,8 @@ public class DetailListAdapter extends BaseAdapter {
         final TextView detailAmount;
         final EditText detailAmountUser;
         final TextView detailUnit;
+        final ImageView detailInc;
+        final ImageView detailDec;
         ViewHolder(View view){
             imageView     = view.findViewById(R.id.detailImage);
             detailName    = view.findViewById(R.id.detailName);
@@ -121,6 +147,9 @@ public class DetailListAdapter extends BaseAdapter {
             detailAmount  = view.findViewById(R.id.detailAmount);
             detailUnit    = view.findViewById(R.id.detailUnit);
             detailAmountUser  = view.findViewById(R.id.detailAmountUser);
+            detailInc     = view.findViewById(R.id.detailInc);
+            detailDec     = view.findViewById(R.id.detailDec);
+
         }
     }
 }

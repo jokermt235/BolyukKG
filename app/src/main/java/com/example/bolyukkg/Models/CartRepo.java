@@ -26,6 +26,7 @@ public class CartRepo extends FireModel {
         this.translateData = translateData;
     }
     public void save(Map<String, Object> data) {
+
         data.put("detailId", data.get("id"));
         data.put("added", new Date().getTime());
         data.put("androidId", this.getAndroidId());
