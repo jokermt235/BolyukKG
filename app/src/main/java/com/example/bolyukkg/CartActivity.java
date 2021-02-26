@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.example.bolyukkg.Adapters.CartListAdapter;
@@ -19,6 +20,8 @@ public class CartActivity extends AppCompatActivity implements ITranslateData {
     private Toolbar toolbar;
     private ListView cartList;
     private CartRepo repo;
+    private Menu menu;
+    private MenuItem menuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,8 @@ public class CartActivity extends AppCompatActivity implements ITranslateData {
         setSupportActionBar(toolbar);
         cartList  = findViewById(R.id.cartList);
         repo = new CartRepo(CartActivity.this, this);
+        menu = toolbar.getMenu();
+        menuItem = menu.findItem(R.id.cart_toolbar_item_amount);
     }
 
     @Override
@@ -50,5 +55,6 @@ public class CartActivity extends AppCompatActivity implements ITranslateData {
     @Override
     public void onFilerData(ArrayList<Map<String, Object>> data) {
         cartList.setAdapter(new CartListAdapter(CartActivity.this, data, this));
+        menu.findItem(R.id.cart_toolbar_item_amount).setTitle(String.valueOf(data.size()));
     }
 }

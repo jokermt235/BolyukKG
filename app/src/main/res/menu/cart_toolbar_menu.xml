@@ -16,6 +16,7 @@
         android:titleCondensed="34"
         app:showAsAction="always|withText" />
     <item
+        android:id="@+id/cart_toolbar_item_amount"
         android:menuCategory="container"
         android:title="0"
         app:showAsAction="always" />
