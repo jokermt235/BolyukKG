@@ -84,6 +84,7 @@ public class DetailActivity extends AppCompatActivity implements ITranslateData 
     protected void onStart() {
         super.onStart();
         mDetail.filter(getIntent().getStringExtra("idCat"), getIntent().getStringExtra("idBrand"),null);
+        Log.d(TAG, getIntent().getStringExtra("idCat") +  ":"  + getIntent().getStringExtra("idBrand"));
         cat.setText(getIntent().getStringExtra("titleCat"));
         brandTitle.setText(getIntent().getStringExtra("titleBrand"));
         modelTitle.setText(getIntent().getStringExtra("titleModel"));

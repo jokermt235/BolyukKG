@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item
-        android:id="@+id/cart_toolbar_item_search"
-        android:icon="@android:drawable/ic_menu_search"
-        android:title="Поиск ..."
-        app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="always|collapseActionView" />
-    <item
-        android:id="@+id/cart_toolbar_item_cart"
+        android:id="@+id/home_toolbar_menu2_cart"
         android:icon="@drawable/ic_baseline_shopping_cart_24"
         android:orderInCategory="100"
         android:title="45"
         android:titleCondensed="34"
         app:showAsAction="always|withText" />
     <item
-        android:id="@+id/cart_toolbar_item_amount"
+        android:id="@+id/home_toolbar_menu2_amount"
         android:menuCategory="container"
         android:title="0"
         app:showAsAction="always" />

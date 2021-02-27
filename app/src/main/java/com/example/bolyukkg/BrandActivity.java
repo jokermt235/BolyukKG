@@ -12,18 +12,22 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.example.bolyukkg.Adapters.BrandGridAdapter;
+import com.example.bolyukkg.Callback.IBrandRepo;
 import com.example.bolyukkg.Callback.IRetrieveData;
-import com.example.bolyukkg.Callback.OnFilterResult;
-import com.example.bolyukkg.Module.SimpleLoader;
+import com.example.bolyukkg.Callback.ITranslateData;
+import com.example.bolyukkg.Models.BrandRepo;
+import com.example.bolyukkg.Models.CartRepo;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-public class BrandActivity extends AppCompatActivity implements IRetrieveData {
+public class BrandActivity extends AppCompatActivity implements
+        ITranslateData , IRetrieveData , IBrandRepo {
 
     private GridView brandGridView;
     private Toolbar toolbar;
     private TextView brandCat;
+    private Menu menu;
     private String category;
     private String id;
 
@@ -53,7 +57,8 @@ public class BrandActivity extends AppCompatActivity implements IRetrieveData {
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home_toolbar_menu, menu);
+        getMenuInflater().inflate(R.menu.home_toolbar_menu2, menu);
+        this.menu = menu;
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -66,14 +71,18 @@ public class BrandActivity extends AppCompatActivity implements IRetrieveData {
     }
 
     private  void loadLocal(){
-        SimpleLoader.filter("brand", new OnFilterResult(){
-            @Override
-            public void onResult(ArrayList<Map<String, Object>> arrayList) {
-                if(!arrayList.isEmpty()){
-                    brandGridView.setAdapter(new BrandGridAdapter(BrandActivity.this, arrayList, BrandActivity.this));
-                }
-            }
-        });
+        new CartRepo(BrandActivity.this , this).filter();
+        new BrandRepo(BrandActivity.this , this).filter();
+    }
+
+    @Override
+    public void onSaveItem(boolean status) {
+
+    }
+
+    @Override
+    public void onFilerData(ArrayList<Map<String, Object>> data) {
+        menu.findItem(R.id.home_toolbar_menu2_amount).setTitle(String.valueOf(data.size()));
     }
 
     @Override
@@ -89,5 +98,10 @@ public class BrandActivity extends AppCompatActivity implements IRetrieveData {
     @Override
     public String getCatId() {
         return id;
+    }
+
+    @Override
+    public void onFilterBrand(ArrayList<Map<String, Object>> data) {
+        brandGridView.setAdapter(new BrandGridAdapter(BrandActivity.this, data, this));
     }
 }
