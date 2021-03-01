@@ -68,7 +68,7 @@ public class HomeActivity extends AppCompatActivity implements ITranslateData {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.home_toolbar_item_cart : startActivity(new Intent(HomeActivity.this, CartActivity.class));
+            case R.id.home_toolbar_menu2_cart : startActivity(new Intent(HomeActivity.this, CartActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

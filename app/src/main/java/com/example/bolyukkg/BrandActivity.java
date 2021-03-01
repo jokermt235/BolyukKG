@@ -65,7 +65,7 @@ public class BrandActivity extends AppCompatActivity implements
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.home_toolbar_item_cart : startActivity(new Intent(BrandActivity.this, CartActivity.class));
+            case R.id.home_toolbar_menu2_cart : startActivity(new Intent(BrandActivity.this, CartActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

@@ -46,7 +46,8 @@ public class CartRepo extends FireModel {
         });
     }
     public void filter() {
-        this.getDb().collection("cart").orderBy("added", Query.Direction.DESCENDING)
+        Log.d(TAG, this.getAndroidId());
+        this.getDb().collection("cart").whereEqualTo("androidId", this.getAndroidId()).orderBy("added", Query.Direction.DESCENDING)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
