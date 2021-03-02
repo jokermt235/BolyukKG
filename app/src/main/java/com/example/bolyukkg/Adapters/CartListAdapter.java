@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.bolyukkg.Callback.ITranslateData;
 import com.example.bolyukkg.Callback.OnImageDownloadResult;
+import com.example.bolyukkg.Models.CartRepo;
 import com.example.bolyukkg.Module.SimpleImageLoader;
 import com.example.bolyukkg.R;
 
@@ -23,6 +24,7 @@ public class CartListAdapter  extends BaseAdapter {
     private Context mContext;
     private CartListAdapter.ViewHolder vh;
     private ITranslateData translateData;
+    private CartRepo cartRepo;
 
     private ArrayList<Map<String, Object>> collections;
 
@@ -30,6 +32,7 @@ public class CartListAdapter  extends BaseAdapter {
         this.mContext = c;
         this.collections = collections;
         this.translateData = translateData;
+        this.cartRepo = new CartRepo(c, translateData);
     }
     @Override
     public int getCount() {
@@ -74,6 +77,13 @@ public class CartListAdapter  extends BaseAdapter {
             }
         });
 
+        viewHolder.remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cartRepo.remove((String)collections.get(i).get("_ref"));
+            }
+        });
+
         viewHolder.cartName.setText((String)collections.get(i).get("name"));
         viewHolder.cartArticle.setText((String)collections.get(i).get("article"));
         String price = (long)collections.get(i).get("price") + " " + (String)collections.get(i).get("currency");
@@ -91,12 +101,14 @@ public class CartListAdapter  extends BaseAdapter {
         final TextView cartPrice;
         final TextView cartArticle;
         final TextView cartCount;
+        final ImageView remove;
         ViewHolder(View view){
-            imageView     = view.findViewById(R.id.cartImage);
+            imageView   = view.findViewById(R.id.cartImage);
             cartName    = view.findViewById(R.id.cartName);
             cartPrice   = view.findViewById(R.id.cartPrice);
             cartArticle = view.findViewById(R.id.cartArticle);
-            cartCount          = view.findViewById(R.id.cartCount);
+            cartCount   = view.findViewById(R.id.cartCount);
+            remove      = view.findViewById(R.id.cartRemove);
         }
     }
 }

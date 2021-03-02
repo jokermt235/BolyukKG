@@ -25,7 +25,6 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:titleTextColor="@android:color/white" />
-
         <com.smarteist.autoimageslider.SliderView
             android:id="@+id/imageSlider"
             android:layout_width="match_parent"
@@ -44,9 +43,6 @@
             app:sliderIndicatorUnselectedColor="#FFF"
             app:sliderScrollTimeInSec="10"
             app:sliderStartAutoCycle="true" />
-
-
-
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/main_category_tab"
             android:layout_width="match_parent"

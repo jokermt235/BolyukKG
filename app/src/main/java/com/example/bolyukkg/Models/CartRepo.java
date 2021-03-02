@@ -66,4 +66,15 @@ public class CartRepo extends FireModel {
             }
         });
     }
+
+    public void remove(String doc){
+        if(doc != null) {
+            this.getDb().collection("cart").document(doc).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    filter();
+                }
+            });
+        }
+    }
 }
