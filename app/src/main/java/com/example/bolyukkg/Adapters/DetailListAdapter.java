@@ -93,7 +93,8 @@ public class DetailListAdapter extends BaseAdapter {
                 CartRepo cartRepo = new CartRepo(mContext, translateData);
                 Map data = collections.get(i);
                 data.put("amount", Long.parseLong(viewHolder.detailAmountUser.getText().toString()));
-                cartRepo.save(collections.get(i));
+                cartRepo.setData(collections.get(i));
+                cartRepo.save();
             }
         });
         String price = (long)collections.get(i).get("price") + " " + (String)collections.get(i).get("currency");

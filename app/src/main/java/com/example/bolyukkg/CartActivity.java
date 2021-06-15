@@ -11,6 +11,9 @@ import android.widget.ListView;
 import com.example.bolyukkg.Adapters.CartListAdapter;
 import com.example.bolyukkg.Callback.ITranslateData;
 import com.example.bolyukkg.Models.CartRepo;
+import com.example.bolyukkg.Models.CartRepository;
+import com.example.bolyukkg.Models.ICartRepo;
+import com.example.bolyukkg.Models.ICartRepoex;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -19,7 +22,7 @@ public class CartActivity extends AppCompatActivity implements ITranslateData {
 
     private Toolbar toolbar;
     private ListView cartList;
-    private CartRepo repo;
+    private ICartRepoex repo;
     private Menu menu;
     private MenuItem menuItem;
 

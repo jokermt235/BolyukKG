@@ -17,15 +17,26 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
-public class CartRepo extends FireModel {
+public class CartRepo extends FireModel implements ICartRepo, ICartRepoex {
 
     private static  String TAG = "CartRepo";
     private ITranslateData translateData;
+    private Map<String, Object> data;
+    private String doc;
     public CartRepo(Context c, ITranslateData translateData){
         super(c);
         this.translateData = translateData;
     }
-    public void save(Map<String, Object> data) {
+    public void setData(Map<String, Object> data) {
+        this.data = data;
+    }
+
+    public void setDoc(String doc){
+        this.doc = doc;
+    }
+
+    @Override
+    public void save() {
 
         data.put("detailId", data.get("id"));
         data.put("added", new Date().getTime());
@@ -45,6 +56,7 @@ public class CartRepo extends FireModel {
             }
         });
     }
+
     public void filter() {
         Log.d(TAG, this.getAndroidId());
         this.getDb().collection("cart").whereEqualTo("androidId", this.getAndroidId()).orderBy("added", Query.Direction.DESCENDING)
@@ -67,7 +79,8 @@ public class CartRepo extends FireModel {
         });
     }
 
-    public void remove(String doc){
+    @Override
+    public void remove() {
         if(doc != null) {
             this.getDb().collection("cart").document(doc).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -76,5 +89,8 @@ public class CartRepo extends FireModel {
                 }
             });
         }
+    }
+
+    public void remove(String doc){
     }
 }
